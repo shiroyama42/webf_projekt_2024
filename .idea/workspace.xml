@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e38a6fd-5cec-44e7-a2ed-5b4e4eb3b8ba" name="Changes" comment="" />
+    <list default="true" id="0e38a6fd-5cec-44e7-a2ed-5b4e4eb3b8ba" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/CompanyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/CompanyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/entity/DepartmentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/entity/DepartmentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/repository/DepartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/repository/DepartmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,10 +40,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.CompanyApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Ben/Documents/School/szoftver/SzoftverModszertanok/backend"
+    "last_opened_file_path": "C:/Users/Ben/Documents/School/szoftver/SzoftverModszertanok/backend",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
