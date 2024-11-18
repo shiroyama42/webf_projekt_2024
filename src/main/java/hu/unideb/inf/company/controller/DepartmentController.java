@@ -1,4 +1,4 @@
 package hu.unideb.inf.company.controller;
 
-public class WebConfig {
+public class WebController {
 }
