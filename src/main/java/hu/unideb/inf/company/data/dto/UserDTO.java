@@ -6,7 +6,7 @@ public class UserDTO {
     private String lastName;
     private String role;
     private String emailAddress;
-    private String departmentName; // This field holds the department name
+    private String depName; // This field holds the department name
 
     public UserDTO(int id, String firstName, String lastName, String role, String emailAddress, String departmentName) {
         this.id = id;
@@ -14,7 +14,7 @@ public class UserDTO {
         this.lastName = lastName;
         this.role = role;
         this.emailAddress = emailAddress;
-        this.departmentName = departmentName;
+        this.depName = departmentName;
     }
 
     // Getters and setters
@@ -33,6 +33,6 @@ public class UserDTO {
     public String getEmailAddress() { return emailAddress; }
     public void setEmailAddress(String emailAddress) { this.emailAddress = emailAddress; }
 
-    public String getDepartmentName() { return departmentName; }
-    public void setDepartmentName(String departmentName) { this.departmentName = departmentName; }
+    public String getDepartmentName() { return depName; }
+    public void setDepartmentName(String departmentName) { this.depName = departmentName; }
 }

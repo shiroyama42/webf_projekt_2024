@@ -58,22 +58,21 @@ function UserList() {
 
   const saveEdit = (id) => {
 
-    const updatedUser = {
-      firstName : editedData.firstName,
-      lastName : editedData.lastName,
-      role : editedData.role,
-      emailAddress : editedData.emailAddress,
-      depId: { id : departmentId}
-    };
-
     axios
-      .put(`http://localhost:8080/company/users/${id}`, updatedUser)
+      .put(`http://localhost:8080/company/users/${id}`, {
+        firstName: editedData.firstName,
+        lastName: editedData.lastName,
+        role: editedData.role,
+        emailAddress: editedData.emailAddress,
+        depId: editedData.depId ? { id: editedData.depId } : null, // Ensure depId format
+      })
       .then((response) => {
         setUsers((prev) =>
           prev.map((user) => (user.id === id ? response.data : user))
         );
         setEditingUserId(null);
         alert("User updated successfully.");
+        window.location.reload(false);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
@@ -159,11 +158,11 @@ function UserList() {
                     onChange={handleInputChange}
                   >
                     <option value="">Select Department</option>
-            {departments.map((department) => (
-              <option key={department.id} value={department.id}>
-                {department.depName}
-              </option>
-            ))}
+                    {departments.map((dep) => (
+                      <option key={dep.id} value={dep.id}>
+                        {dep.depName}
+                      </option>
+                    ))}
                   </select>
                 ) : (
                   user.departmentName || "N/A"
