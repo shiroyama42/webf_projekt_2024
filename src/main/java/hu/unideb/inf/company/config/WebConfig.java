@@ -1,4 +1,4 @@
-package hu.unideb.inf.company.controller;
+package hu.unideb.inf.company.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -4,10 +4,22 @@ import { Link } from "react-router-dom";
 
 function UserList() {
   const [users, setUsers] = useState([]);
+  const [departmentId, setDepartmentId] = useState([]);
+  const [departments, setDepartments] = useState([]); // Stores department data
+  const [editingUserId, setEditingUserId] = useState(null);
+  const [editedData, setEditedData] = useState({});
 
   useEffect(() => {
-    axios.get("http://localhost:8080/company/users")
+    // Fetch users
+    axios
+      .get("http://localhost:8080/company/users")
       .then((response) => setUsers(response.data))
+      .catch((error) => console.error(error));
+
+    // Fetch departments
+    axios
+      .get("http://localhost:8080/company/departments")
+      .then((response) => setDepartments(response.data))
       .catch((error) => console.error(error));
   }, []);
 
@@ -26,10 +38,55 @@ function UserList() {
     }
   };
 
+  const startEditing = (user) => {
+    setEditingUserId(user.id);
+    setEditedData({ ...user, depId: user.depId || "" }); // Correctly set depId
+  };
+
+  const cancelEditing = () => {
+    setEditingUserId(null);
+    setEditedData({});
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const saveEdit = (id) => {
+
+    const updatedUser = {
+      firstName : editedData.firstName,
+      lastName : editedData.lastName,
+      role : editedData.role,
+      emailAddress : editedData.emailAddress,
+      depId: { id : departmentId}
+    };
+
+    axios
+      .put(`http://localhost:8080/company/users/${id}`, updatedUser)
+      .then((response) => {
+        setUsers((prev) =>
+          prev.map((user) => (user.id === id ? response.data : user))
+        );
+        setEditingUserId(null);
+        alert("User updated successfully.");
+      })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+        alert("Failed to update user. Please try again.");
+      });
+  };
+
   return (
     <div>
       <h1>User List</h1>
-      <Link to="/add" className="btn btn-primary mb-3">Add User</Link>
+      <Link to="/add" className="btn btn-primary mb-3">
+        Add User
+      </Link>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -46,13 +103,106 @@ function UserList() {
           {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.role}</td>
-              <td>{user.emailAddress}</td>
-              <td>{user.departmentName || "N/A"}</td>
               <td>
-                <button className="btn btn-danger" onClick={() => deleteUser(user.id)}>Delete</button>
+                {editingUserId === user.id ? (
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={editedData.firstName || ""}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  user.firstName
+                )}
+              </td>
+              <td>
+                {editingUserId === user.id ? (
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={editedData.lastName || ""}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  user.lastName
+                )}
+              </td>
+              <td>
+                {editingUserId === user.id ? (
+                  <input
+                    type="text"
+                    name="role"
+                    value={editedData.role || ""}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  user.role
+                )}
+              </td>
+              <td>
+                {editingUserId === user.id ? (
+                  <input
+                    type="email"
+                    name="emailAddress"
+                    value={editedData.emailAddress || ""}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  user.emailAddress
+                )}
+              </td>
+              <td>
+                {editingUserId === user.id ? (
+                  <select
+                    name="depId"
+                    value={editedData.depId || ""}
+                    onChange={handleInputChange}
+                  >
+                    <option value="">Select Department</option>
+            {departments.map((department) => (
+              <option key={department.id} value={department.id}>
+                {department.depName}
+              </option>
+            ))}
+                  </select>
+                ) : (
+                  user.departmentName || "N/A"
+                )}
+              </td>
+              <td>
+                {editingUserId === user.id ? (
+                  <>
+                    <button
+                      className="btn btn-success"
+                      onClick={() => saveEdit(user.id)}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={cancelEditing}
+                      style={{ marginLeft: "10px" }}
+                    >
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => startEditing(user)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteUser(user.id)}
+                      style={{ marginLeft: "10px" }}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
               </td>
             </tr>
           ))}
