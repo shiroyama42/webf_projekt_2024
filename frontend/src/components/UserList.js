@@ -7,6 +7,8 @@ function UserList() {
   const [editingUser, setEditingUser] = useState(null);
   const [editedUser, setEditedUser] = useState({});
   const [departments, setDepartments] = useState([]);
+  const [userRole, setUserRole] = useState(localStorage.getItem("role") || null);
+  const isAdmin = userRole.toLowerCase() === "admin";
 
   useEffect(() => {
     axios.get("http://localhost:8080/company/users")
@@ -70,7 +72,7 @@ function UserList() {
   return (
     <div>
       <h1>User List</h1>
-      <Link to="/add" className="btn btn-primary mb-3">Add User</Link>
+      {isAdmin &&<Link to="/add" className="btn btn-primary mb-3">Add User</Link>}
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -156,8 +158,11 @@ function UserList() {
                   <td>{user.emailAddress}</td>
                   <td>{user.departmentName || "N/A"}</td>
                   <td>
-                    <button style={{marginRight: 5}} className="btn btn-success" onClick={() => handleEdit(user)}>Edit</button>
-                    <button className="btn btn-danger" onClick={() => deleteUser(user.id)}>Delete</button>
+                    {isAdmin && (
+                      <>
+                        <button style={{marginRight: 5}} className="btn btn-success" onClick={() => handleEdit(user)}>Edit</button>
+                        <button className="btn btn-danger" onClick={() => deleteUser(user.id)}>Delete</button>
+                      </>)}
                   </td>
                 </>
               )}
