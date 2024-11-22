@@ -4,88 +4,73 @@ import { Link } from "react-router-dom";
 
 function UserList() {
   const [users, setUsers] = useState([]);
-  const [departmentId, setDepartmentId] = useState([]);
-  const [departments, setDepartments] = useState([]); // Stores department data
-  const [editingUserId, setEditingUserId] = useState(null);
-  const [editedData, setEditedData] = useState({});
+  const [editingUser, setEditingUser] = useState(null);
+  const [editedUser, setEditedUser] = useState({});
+  const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    // Fetch users
-    axios
-      .get("http://localhost:8080/company/users")
+    axios.get("http://localhost:8080/company/users")
       .then((response) => setUsers(response.data))
       .catch((error) => console.error(error));
 
-    // Fetch departments
-    axios
-      .get("http://localhost:8080/company/departments")
+    axios.get("http://localhost:8080/company/departments")
       .then((response) => setDepartments(response.data))
       .catch((error) => console.error(error));
   }, []);
 
   const deleteUser = (id) => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
-      axios
-        .delete(`http://localhost:8080/company/users/${id}`)
-        .then(() => {
-          setUsers(users.filter((user) => user.id !== id));
-          alert("User deleted successfully.");
-        })
-        .catch((error) => {
-          console.error("Error deleting user:", error);
-          alert("Failed to delete user. Please try again.");
-        });
+    const confirm = window.confirm("Do you want to delete user?")
+    if(confirm){
+      axios.delete(`http://localhost:8080/company/users/${id}`)
+      .then(() => setUsers(users.filter((user) => user.id !== id)))
+      .catch((error) => console.error(error));
     }
+
   };
 
-  const startEditing = (user) => {
-    setEditingUserId(user.id);
-    setEditedData({ ...user, depId: user.depId || "" }); // Correctly set depId
+  const handleEdit = (user) => {
+    setEditingUser(user.id);
+    setEditedUser({...user});
   };
 
-  const cancelEditing = () => {
-    setEditingUserId(null);
-    setEditedData({});
-  };
+  const handleCancel = () => {
+    setEditingUser(null);
+    setEditedUser({});
+  }
+
+  const handleSave = () => {
+
+    const user = {
+      ...editedUser,
+      depId: {id: editedUser.depId},
+    };
+
+    axios.put(`http://localhost:8080/company/users/${editingUser}`, user)
+         .then((response) => {
+          setUsers((prev) => prev.map((user) => user.id === editingUser ? response.data : user));
+    alert("Updated successfully!")
+    setEditingUser(null);
+    setEditedUser({});
+  })
+         .catch((error) => {
+          console.error(error);
+          alert("Failed to update!");
+         })
+  }
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedData((prev) => ({
+    const {name, value} = e.target;
+    setEditedUser((prev) => ({
       ...prev,
       [name]: value,
-    }));
+    }))
   };
 
-  const saveEdit = (id) => {
-
-    axios
-      .put(`http://localhost:8080/company/users/${id}`, {
-        firstName: editedData.firstName,
-        lastName: editedData.lastName,
-        role: editedData.role,
-        emailAddress: editedData.emailAddress,
-        depId: editedData.depId ? { id: editedData.depId } : null, // Ensure depId format
-      })
-      .then((response) => {
-        setUsers((prev) =>
-          prev.map((user) => (user.id === id ? response.data : user))
-        );
-        setEditingUserId(null);
-        alert("User updated successfully.");
-        window.location.reload(false);
-      })
-      .catch((error) => {
-        console.error("Error updating user:", error);
-        alert("Failed to update user. Please try again.");
-      });
-  };
 
   return (
     <div>
       <h1>User List</h1>
-      <Link to="/add" className="btn btn-primary mb-3">
-        Add User
-      </Link>
+      <Link to="/add" className="btn btn-primary mb-3">Add User</Link>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -101,108 +86,81 @@ function UserList() {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>
-                {editingUserId === user.id ? (
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={editedData.firstName || ""}
-                    onChange={handleInputChange}
-                  />
-                ) : (
-                  user.firstName
-                )}
-              </td>
-              <td>
-                {editingUserId === user.id ? (
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={editedData.lastName || ""}
-                    onChange={handleInputChange}
-                  />
-                ) : (
-                  user.lastName
-                )}
-              </td>
-              <td>
-                {editingUserId === user.id ? (
-                  <input
-                    type="text"
-                    name="role"
-                    value={editedData.role || ""}
-                    onChange={handleInputChange}
-                  />
-                ) : (
-                  user.role
-                )}
-              </td>
-              <td>
-                {editingUserId === user.id ? (
-                  <input
-                    type="email"
-                    name="emailAddress"
-                    value={editedData.emailAddress || ""}
-                    onChange={handleInputChange}
-                  />
-                ) : (
-                  user.emailAddress
-                )}
-              </td>
-              <td>
-                {editingUserId === user.id ? (
-                  <select
-                    name="depId"
-                    value={editedData.depId || ""}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Select Department</option>
-                    {departments.map((dep) => (
-                      <option key={dep.id} value={dep.id}>
-                        {dep.depName}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  user.departmentName || "N/A"
-                )}
-              </td>
-              <td>
-                {editingUserId === user.id ? (
-                  <>
-                    <button
-                      className="btn btn-success"
-                      onClick={() => saveEdit(user.id)}
+              {editingUser === user.id ? (
+                <>
+                  {/* Inline Edit Form */}
+                  <td>{user.id}</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={editedUser.firstName}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={editedUser.lastName}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name="role"
+                      value={editedUser.role}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="email"
+                      name="emailAddress"
+                      value={editedUser.emailAddress}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                  <td>
+                    <select
+                      name="depId"
+                      value={editedUser.depId || ""}
+                      onChange={(e) =>
+                        setEditedUser((prev) => ({
+                          ...prev,
+                          depId: e.target.value,
+                        }))
+                      }
+                      className="form-control"
                     >
-                      Save
-                    </button>
-                    <button
-                      className="btn btn-secondary"
-                      onClick={cancelEditing}
-                      style={{ marginLeft: "10px" }}
-                    >
-                      Cancel
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => startEditing(user)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => deleteUser(user.id)}
-                      style={{ marginLeft: "10px" }}
-                    >
-                      Delete
-                    </button>
-                  </>
-                )}
-              </td>
+                      {departments.map((dept) => (
+                        <option key={dept.id} value={dept.id}>
+                          {dept.depName}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                  <td>
+                    <button className="btn btn-success" onClick={handleSave}>Save</button>
+                    <button className="btn btn-danger" onClick={handleCancel}>Cancel</button>
+                  </td>
+                </>
+              ) : (
+                <>
+                  {/* Default View */}
+                  <td>{user.id}</td>
+                  <td>{user.firstName}</td>
+                  <td>{user.lastName}</td>
+                  <td>{user.role}</td>
+                  <td>{user.emailAddress}</td>
+                  <td>{user.departmentName || "N/A"}</td>
+                  <td>
+                    <button style={{marginRight: 5}} className="btn btn-success" onClick={() => handleEdit(user)}>Edit</button>
+                    <button className="btn btn-danger" onClick={() => deleteUser(user.id)}>Delete</button>
+                  </td>
+                </>
+              )}
             </tr>
           ))}
         </tbody>
@@ -212,3 +170,5 @@ function UserList() {
 }
 
 export default UserList;
+
+

@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0e38a6fd-5cec-44e7-a2ed-5b4e4eb3b8ba" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/data/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

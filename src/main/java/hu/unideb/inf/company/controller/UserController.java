@@ -51,16 +51,35 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserEntity updateUser(@PathVariable("id") int id, @RequestBody UserEntity userDetails){
-        UserEntity user = userRepository.getReferenceById(id);
+    public UserDTO updateUser(@PathVariable("id") int id, @RequestBody UserEntity userDetails) {
+        // Fetch the user entity from the database
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
-        user.setDepId(userDetails.getDepId());
-        user.setFirstName(userDetails.getFirstName());
-        user.setLastName(user.getLastName());
-        user.setRole(user.getRole());
-        user.setEmailAddress(user.getEmailAddress());
+        // Validate and update department
+        if (userDetails.getDepId() != null && userDetails.getDepId().getId() != 0) {
+            DepartmentEntity department = departmentRepository.findById(userDetails.getDepId().getId())
+                    .orElseThrow(() -> new RuntimeException("Department not found"));
+            user.setDepId(department);
+        }
 
-        return userRepository.save(user);
+        // Update other fields
+        if (userDetails.getFirstName() != null) user.setFirstName(userDetails.getFirstName());
+        if (userDetails.getLastName() != null) user.setLastName(userDetails.getLastName());
+        if (userDetails.getRole() != null) user.setRole(userDetails.getRole());
+        if (userDetails.getEmailAddress() != null) user.setEmailAddress(userDetails.getEmailAddress());
+
+        // Save updated user
+        userRepository.save(user);
+
+        return new UserDTO(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getRole(),
+                user.getEmailAddress(),
+                user.getDepId() != null ? user.getDepId().getDepName() : null
+        );
     }
 
     @PostMapping("")
