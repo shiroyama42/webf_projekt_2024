@@ -17,13 +17,13 @@ function Login({ setUserRole }) {
 
       const { role } = response.data;
       setUserRole(role); // Pass role to parent state
-      localStorage.setItem("role", role); // Optionally save role for persistence
-
+      localStorage.setItem("role", response.data.role);
       navigate("/users"); // Redirect to user list
     } catch (error) {
       alert("Login failed. Please check your credentials.");
       console.error(error);
     }
+    
   };
 
   return (

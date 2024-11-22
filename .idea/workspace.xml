@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0e38a6fd-5cec-44e7-a2ed-5b4e4eb3b8ba" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/asd.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/asd.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
