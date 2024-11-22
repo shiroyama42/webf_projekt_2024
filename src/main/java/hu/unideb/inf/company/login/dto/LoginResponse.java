@@ -1,4 +1,4 @@
-package hu.unideb.inf.company.login.controller;
+package hu.unideb.inf.company.login.dto;
 
 public class LoginResponse {
     private int id;

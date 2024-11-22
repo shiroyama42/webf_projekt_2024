@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e38a6fd-5cec-44e7-a2ed-5b4e4eb3b8ba" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/login/dto/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/login/dto/LoginResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserDetails.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/login/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/login/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/controller/DepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/entity/DepartmentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/entity/DepartmentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/repository/DepartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/repository/DepartmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hu/unideb/inf/company/tables/data/repository/UserRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

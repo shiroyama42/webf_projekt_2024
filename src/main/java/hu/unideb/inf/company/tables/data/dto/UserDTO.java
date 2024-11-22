@@ -1,4 +1,4 @@
-package hu.unideb.inf.company.data.dto;
+package hu.unideb.inf.company.tables.data.dto;
 
 public class UserDTO {
     private int id;

@@ -1,7 +1,7 @@
-package hu.unideb.inf.company.controller;
+package hu.unideb.inf.company.tables.controller;
 
-import hu.unideb.inf.company.data.entity.DepartmentEntity;
-import hu.unideb.inf.company.data.repository.DepartmentRepository;
+import hu.unideb.inf.company.tables.data.entity.DepartmentEntity;
+import hu.unideb.inf.company.tables.data.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

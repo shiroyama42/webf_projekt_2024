@@ -1,6 +1,6 @@
-package hu.unideb.inf.company.data.repository;
+package hu.unideb.inf.company.tables.data.repository;
 
-import hu.unideb.inf.company.data.entity.DepartmentEntity;
+import hu.unideb.inf.company.tables.data.entity.DepartmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package hu.unideb.inf.company.config;
+package hu.unideb.inf.company.tables.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

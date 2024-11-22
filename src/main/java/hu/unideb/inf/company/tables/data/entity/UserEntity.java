@@ -1,4 +1,4 @@
-package hu.unideb.inf.company.data.entity;
+package hu.unideb.inf.company.tables.data.entity;
 
 import jakarta.persistence.*;
 
@@ -24,6 +24,9 @@ public class UserEntity {
 
     @Column(name = "email_address")
     private String emailAddress;
+
+    @Column(name = "password")
+    private String password;
 
     public UserEntity(){
     }
@@ -70,5 +73,13 @@ public class UserEntity {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

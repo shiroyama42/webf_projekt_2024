@@ -1,4 +1,4 @@
-package hu.unideb.inf.company.data.entity;
+package hu.unideb.inf.company.tables.data.entity;
 
 import jakarta.persistence.*;
 
