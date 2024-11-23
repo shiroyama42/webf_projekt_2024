@@ -16,15 +16,20 @@ function Login({ setUserRole }) {
       });
 
       const { role } = response.data;
-      setUserRole(role); // Pass role to parent state
+      setUserRole(role); 
       localStorage.setItem("role", response.data.role);
-      navigate("/users"); // Redirect to user list
+      navigate("/users"); 
+
     } catch (error) {
       alert("Login failed. Please check your credentials.");
       console.error(error);
     }
     
   };
+
+  const handleRegister = () => {
+    navigate("/add")
+  }
 
   return (
     <div>
@@ -51,6 +56,7 @@ function Login({ setUserRole }) {
           />
         </div>
         <button type="submit" className="btn btn-primary">Login</button>
+        <button className="btn btn-primary" onClick={handleRegister}>Register</button>
       </form>
     </div>
   );

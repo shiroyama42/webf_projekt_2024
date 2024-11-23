@@ -15,6 +15,7 @@ function UserList() {
     role: "",
     emailAddress: "",
     departmentName: "",
+    password: "0000"
   });
   const [showAddForm, setShowAddForm] = useState(false);
   

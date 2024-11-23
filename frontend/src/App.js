@@ -12,6 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login setUserRole={setUserRole} />} />
+        <Route path="/add" element={<UserForm/>}/>
         <Route
           path="/users"
           element={

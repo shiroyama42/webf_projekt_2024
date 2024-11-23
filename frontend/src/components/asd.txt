@@ -3,3 +3,21 @@ password: 12345
 
 belint5@gmail.cigany
 password: 55555
+
+        <div className="form-group mb-3">
+          <label>Role</label>
+          <input type="text" className="form-control" value={role} onChange={(e) => setRole(e.target.value)} required />
+        </div>
+
+
+        <div className="form-group mb-3">
+          <label>Department</label>
+          <select className="form-control" value={departmentId} onChange={(e) => setDepartmentId(e.target.value)} required>
+            <option value="">Select Department</option>
+            {departments.map((department) => (
+              <option key={department.id} value={department.id}>
+                {department.depName}
+              </option>
+            ))}
+          </select>
+        </div>
