@@ -84,10 +84,13 @@ public class UserController {
 
     @PostMapping("")
     public UserEntity saveUser(@RequestBody UserEntity user){
-        DepartmentEntity department = departmentRepository.findById(user.getDepId().getId())
-                        .orElseThrow(() -> new RuntimeException("Department not found"));
-
-        user.setDepId(department);
+        if (user.getDepId() != null && user.getDepId().getId() != 0) {
+            DepartmentEntity department = departmentRepository.findById(user.getDepId().getId())
+                    .orElseThrow(() -> new RuntimeException("Department not found"));
+            user.setDepId(department);
+        } else {
+            user.setDepId(null);
+        }
 
         return userRepository.save(user);
     }

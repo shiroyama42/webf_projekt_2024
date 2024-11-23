@@ -27,7 +27,6 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
 
-        // Return user role and other details
         return ResponseEntity.ok(new LoginResponse(user.getId(), user.getRole()));
     }
 
